@@ -1,7 +1,6 @@
-// Load User Data from JSON
-let users = [];
 let complex = [];
 let factoring = [];
+let logarithms = [];
 
 const topics = [
     {
@@ -11,6 +10,10 @@ const topics = [
     {
         "name": "Factoring",
         "content": "Factoring is the process of breaking down an expression into its multiplicative components. Common methods include factoring out the greatest common factor (GCF), factoring trinomials, and using special factorization formulas such as the difference of squares."
+    },
+    {
+        "name": "Logarithms",
+        "content": "Logarithms are the inverse operations of exponentiation, and they help solve equations involving exponential functions. They follow specific rules such as the product rule, quotient rule, and power rule, which simplify complex expressions and equations."
     }
 ];
 
@@ -44,17 +47,27 @@ function loadQuestions() {
         })
         .catch(error => {
             console.error('Error loading factoring questions:', error);
+        })
+        .then(() => {
+            return fetch('logarithms.json');
+        })
+        .then(response => response.json())  // Parse the JSON response for logarithms questions
+        .then(data => {
+            logarithms = data.logarithms;  // Store logarithms questions in the global array
+            console.log("[DEBUG] Loaded logarithms questions:", logarithms);  // Debugging line
+        })
+        .catch(error => {
+            console.error('Error loading logarithms questions:', error);
         });
 }
+
 
 // Log to verify it's working
 console.log("[DEBUG] Loaded hardcoded topics:", topics);
 
-
-// Call the function to load users on page load
+// Change here: Directly show Main Menu on page load
 window.onload = function() {
-    loadUsers();
-    showLogin();
+    showMainMenu();  // Directly show the Main Menu
 }
 
 // Show Login Screen
@@ -80,6 +93,7 @@ function openSearchTopic() {
     hideAllScreens();
     document.getElementById('search-topic-screen').classList.add('active');
 }
+
 function showProfile() {
     hideAllScreens();
     document.getElementById('profile-screen').classList.add('active');
@@ -93,77 +107,28 @@ function hideAllScreens() {
     });
 }
 
-// Login Functionality
-function login() {
-    let username = document.getElementById('login-username').value.trim();
-    let password = document.getElementById('login-password').value.trim();
-    
-    console.log("[DEBUG] Attempting to login with:", username, password);
-
-    // Check if the user exists in the JSON data
-    let user = users.find(u => u.username === username && u.password === password);
-
-    if (user) {
-        alert(`Login Successful! Welcome, ${user.username}`);
-        showMainMenu();
-    } else {
-        alert("Invalid Credentials");
-    }
-}
-
-// Signup Functionality (Basic, no JSON saving yet)
-function signup() {
-    let username = document.getElementById('signup-username').value.trim();
-    let password = document.getElementById('signup-password').value.trim();
-
-    if (username && password) {
-        // Check if username already exists
-        let existingUser = users.find(u => u.username === username);
-
-        if (existingUser) {
-            alert("Username already exists!");
-        } else {
-            // Add new user to the array (Temporary, won't persist)
-            users.push({
-                username: username,
-                password: password,
-                streak: 0,
-                longest_streak: 0,
-                score: 0,
-                total_questions: 0,
-                last_topic: null,
-                badges: [],
-                last_login: null,
-                articles_read: []
-            });
-
-            alert("Account created successfully! You can now login.");
-            showLogin();
-        }
-    } else {
-        alert("Please enter both username and password.");
-    }
-}
-
 function displayArticle(topic) {
+    // Ensure the article display is shown
+    document.getElementById("article-display").classList.remove("hidden");
     document.getElementById("article-title").textContent = topic.name;
     document.getElementById("article-content").textContent = topic.content;
-    document.getElementById("article-display").classList.remove("hidden");
 }
 
+
+
 let currentQuestionIndex = 0;
-let score = 0;
 let questionSet = [];
 let selectedTopic = '';
 let complexPreviouslyAttempted = [];
 let factoringPreviouslyAttempted = [];
+let logarithmsPreviouslyAttempted = [];
 
 async function startPractice() {
     hideAllScreens();
     document.getElementById('math-practice-screen').classList.add('active');
 
-    if (complex.length === 0 && factoring.length === 0) {
-        // Load questions only if both are empty
+    if (complex.length === 0 && factoring.length === 0 && logarithms.length === 0) {
+        // Load questions only if all topics are empty
         await loadQuestions();
     }
 
@@ -172,6 +137,9 @@ async function startPractice() {
         displayQuestion();
     } else if (selectedTopic === 'factoring') {
         prepareFactoringQuestionSet();
+        displayQuestion();
+    } else if (selectedTopic === 'logarithms') {
+        prepareLogarithmsQuestionSet();
         displayQuestion();
     }
 }
@@ -189,15 +157,33 @@ async function loadQuestions() {
         const factoringData = await factoringResponse.json();
         factoring = factoringData.factoring;
         console.log("[DEBUG] Loaded factoring questions:", factoring);
+
+        // Load logarithms questions
+        const logarithmsResponse = await fetch('logarithms.json');
+        const logarithmsData = await logarithmsResponse.json();
+        logarithms = logarithmsData.logarithms;
+        console.log("[DEBUG] Loaded logarithms questions:", logarithms);
+
     } catch (error) {
         console.error("[ERROR] Error loading questions:", error);
     }
 }
 
-function selectTopic(topic) {
-    selectedTopic = topic; // Store the selected topic (either 'complex' or 'factoring')
-    startPractice(); // Start the practice with the selected topic
+function selectTopic(topicKey) {
+    selectedTopic = topicKey;
+
+    const topic = topics.find(t => 
+        (topicKey === 'complex' && t.name === 'Complex Numbers') ||
+        (topicKey === 'factoring' && t.name === 'Factoring') ||
+        (topicKey === 'logarithms' && t.name === 'Logarithms')
+    );
+
+    if (topic) {
+        displayArticle(topic);
+    }
 }
+
+
 
 function prepareComplexQuestionSet() {
     // Combine previously attempted questions and random ones with prioritization
@@ -209,6 +195,13 @@ function prepareComplexQuestionSet() {
 function prepareFactoringQuestionSet() {
     // Combine previously attempted questions and random ones with prioritization
     questionSet = getRandomQuestions(factoringPreviouslyAttempted, factoring, 5);
+    currentQuestionIndex = 0;
+    score = 0;
+}
+
+function prepareLogarithmsQuestionSet() {
+    // Combine previously attempted questions and random ones with prioritization
+    questionSet = getRandomQuestions(logarithmsPreviouslyAttempted, logarithms, 5);
     currentQuestionIndex = 0;
     score = 0;
 }
@@ -239,7 +232,8 @@ function displayQuestion() {
         let previouslyAttemptedText = '';
         let previouslyAttemptedStyle = '';
         if ((selectedTopic === 'complex' && complexPreviouslyAttempted.some(q => q.id === questionData.id)) ||
-            (selectedTopic === 'factoring' && factoringPreviouslyAttempted.some(q => q.id === questionData.id))) {
+            (selectedTopic === 'factoring' && factoringPreviouslyAttempted.some(q => q.id === questionData.id)) ||
+            (selectedTopic === 'logarithms' && logarithmsPreviouslyAttempted.some(q => q.id === questionData.id))) {
             previouslyAttemptedText = ' (Previously attempted)';
             previouslyAttemptedStyle = 'color: red;'; // Set the color to red
         }
@@ -270,75 +264,107 @@ function displayQuestion() {
     }
 }
 
-
-
 function checkAnswer(selectedChoice) {
     let questionData = questionSet[currentQuestionIndex];
 
+    const correctMessages = [
+        "Correct! You're on a roll! 🎯",
+        "Correct! Amazing job! 🌟",
+        "Correct! Keep it up! 🚀",
+        "Correct! You're crushing it! 💪",
+        "Correct! Nicely done! 👍",
+        "Correct! Brilliant work! 🧠",
+        "Correct! That was smooth! 😎"
+    ];
+
+    // Increment the total questions attempted (regardless of correctness)
+    updateProfile(0, selectedTopic, false); // This will now only update profile without incrementing questions
+
+    // Increment the total questions answered, no matter what
+    let totalQuestions = parseInt(sessionStorage.getItem("totalQuestions")) || 0;
+    totalQuestions += 1;
+    sessionStorage.setItem("totalQuestions", totalQuestions); // Update the total in sessionStorage
+
     if (selectedChoice === questionData.answer) {
-        score++;
-        document.getElementById("feedback").textContent = "Correct!";
-        
-        // If the question was previously attempted, remove it from the array
+        // Update profile for correct answers (increment topic-specific counter and totalScore)
+        updateProfile(1, selectedTopic, true); // This will increment topic-specific counter and totalScore
+
+        // Pick a random success message
+        const randomMsg = correctMessages[Math.floor(Math.random() * correctMessages.length)];
+        document.getElementById("feedback").textContent = randomMsg;
+
+        // Remove from previously attempted if it was there
         if (selectedTopic === 'complex') {
             complexPreviouslyAttempted = complexPreviouslyAttempted.filter(q => q.id !== questionData.id);
         } else if (selectedTopic === 'factoring') {
             factoringPreviouslyAttempted = factoringPreviouslyAttempted.filter(q => q.id !== questionData.id);
+        } else if (selectedTopic === 'logarithms') {
+            logarithmsPreviouslyAttempted = logarithmsPreviouslyAttempted.filter(q => q.id !== questionData.id);
         }
     } else {
         document.getElementById("feedback").textContent = `Incorrect! The correct answer was: ${questionData.answer}`;
-        
-        // Add the question back to the previously attempted array if it was incorrect
+
+        // Add to previously attempted if not already there
         if (selectedTopic === 'complex' && !complexPreviouslyAttempted.some(q => q.id === questionData.id)) {
             complexPreviouslyAttempted.push(questionData);
         } else if (selectedTopic === 'factoring' && !factoringPreviouslyAttempted.some(q => q.id === questionData.id)) {
             factoringPreviouslyAttempted.push(questionData);
+        } else if (selectedTopic === 'logarithms' && !logarithmsPreviouslyAttempted.some(q => q.id === questionData.id)) {
+            logarithmsPreviouslyAttempted.push(questionData);
         }
     }
 
+    // Move to next question after a delay
     currentQuestionIndex++;
-    setTimeout(displayQuestion, 1500); // Move to next question after a delay
+    setTimeout(displayQuestion, 2000); // Move to next question after a delay
 }
 
 
-function updateProfile(sessionScore, questionsAnswered) {
-    // Retrieve existing values or set defaults from sessionStorage
+function updateProfile(points, topic, isCorrect) {
+    // Retrieve current session storage values or set defaults if not present
     let totalScore = parseInt(sessionStorage.getItem("totalScore")) || 0;
     let totalQuestions = parseInt(sessionStorage.getItem("totalQuestions")) || 0;
-    let currentStreak = parseInt(sessionStorage.getItem("currentStreak")) || 0;
-    let longestStreak = parseInt(sessionStorage.getItem("longestStreak")) || 0;
 
-    // Update values
-    totalScore += sessionScore;
-    totalQuestions += questionsAnswered;
+    let complexAnswered = parseInt(sessionStorage.getItem("complexAnswered")) || 0;
+    let factoringAnswered = parseInt(sessionStorage.getItem("factoringAnswered")) || 0;
+    let logarithmsAnswered = parseInt(sessionStorage.getItem("logarithmsAnswered")) || 0;
 
-    // Streak Logic
-    if (sessionScore > 0) {
-        currentStreak++;
-        if (currentStreak > longestStreak) {
-            longestStreak = currentStreak;
-        }
-    } else {
-        currentStreak = 0; // Reset streak if no correct answers
+    // Increment the score if the answer was correct
+    if (isCorrect) {
+        totalScore += points;
     }
 
-    // Save to sessionStorage instead of localStorage
-    sessionStorage.setItem("totalScore", totalScore);
-    sessionStorage.setItem("totalQuestions", totalQuestions);
-    sessionStorage.setItem("currentStreak", currentStreak);
-    sessionStorage.setItem("longestStreak", longestStreak);
+    // Increment the topic-specific counter ONLY if the answer was correct
+    if (isCorrect) {
+        if (topic === 'complex') {
+            complexAnswered += 1;
+        } else if (topic === 'factoring') {
+            factoringAnswered += 1;
+        } else if (topic === 'logarithms') {
+            logarithmsAnswered += 1;
+        }
+    }
 
-    // Update profile screen
-    document.getElementById("profile-score").textContent = totalScore;
-    document.getElementById("profile-questions").textContent = totalQuestions;
-    document.getElementById("profile-streak").textContent = currentStreak;
-    document.getElementById("profile-longest-streak").textContent = longestStreak;
+    // Save updated values to sessionStorage
+    sessionStorage.setItem("totalScore", totalScore);
+    sessionStorage.setItem("totalQuestions", totalQuestions); // Do not increment here
+    sessionStorage.setItem("complexAnswered", complexAnswered);
+    sessionStorage.setItem("factoringAnswered", factoringAnswered);
+    sessionStorage.setItem("logarithmsAnswered", logarithmsAnswered);
+
+    // Update the profile screen display with the updated values
+    document.getElementById("profile-score").textContent = `${totalScore} 🏆`;
+    document.getElementById("profile-questions").textContent = `${totalQuestions} 🔢`;
+    document.getElementById("profile-complex-answered").textContent = `${complexAnswered} 🤔`;
+    document.getElementById("profile-factoring-answered").textContent = `${factoringAnswered} ➗`;
+    document.getElementById("profile-logarithms-answered").textContent = `${logarithmsAnswered} 📐`;
 }
+
 
 
 
 function endPractice() {
-    document.getElementById("question-text").textContent = `Practice session complete! Your score: ${score}/${5}`;
+    document.getElementById("question-text").textContent = `Practice session complete!`;
     document.getElementById("choices-container").innerHTML = "";
     document.getElementById("feedback").textContent = "";
 

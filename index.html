@@ -3,36 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SigMath - Login</title>
+    <title>SigMath</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- Login Screen -->
-    <div class="screen" id="login-screen">
-        <img src="images/Logo.png" alt="Logo" class="logo">
-        <input type="text" placeholder="Username" id="login-username">
-        <input type="password" placeholder="Password" id="login-password">
-        <button onclick="login()">Login</button>
-        <button onclick="showSignup()">Register</button>
-    </div>
-
-    <!-- Signup Screen -->
-    <div class="screen" id="signup-screen">
-        <h1>Create Account</h1>
-        <input type="text" placeholder="Username" id="signup-username">
-        <input type="password" placeholder="Password" id="signup-password">
-        <button onclick="signup()">Sign Up</button>
-        <button onclick="showLogin()">Back to Login</button>
-    </div>
-
-    <!-- Main Menu-->
+    <!-- Main Menu -->
     <div class="screen" id="main-menu">
         <div class="menu-container"></div>
-            <img src="images/Logo.png" alt="Logo" class="logo">
-            <button onclick="openSearchTopic()">Choose/Change topic</button>
-            <button onclick="showProfile()">View My Profile</button>
-        <button onclick="showLogin()">Logout</button>
+        <img src="images/Logo.png" alt="Logo" class="logo">
+        <button onclick="openSearchTopic()">Practice</button>
+        <button class="profile-button" onclick="showProfile()">View My Profile</button>
     </div>
 
     <!-- Search Topic Screen -->
@@ -47,6 +28,7 @@
                     <ul>
                         <li><button class="topic-button" onclick="selectTopic('complex')">Complex Numbers</button></li>
                         <li><button class="topic-button" onclick="selectTopic('factoring')">Factoring</button></li>
+                        <li><button class="topic-button" onclick="selectTopic('logarithms')">Logarithms</button></li>
                     </ul>
                 </li>
             </ul>
@@ -64,10 +46,11 @@
     <!-- Profile Screen -->
     <div class="screen" id="profile-screen">
         <h1>My Profile</h1>
-        <p><strong>Current Streak:</strong> <span id="profile-streak"></span> 🔥</p>
-        <p><strong>Longest Streak:</strong> <span id="profile-longest-streak"></span></p>
-        <p><strong>Score:</strong> <span id="profile-score"></span> 🏆</p>
-        <p><strong>Total Questions Answered:</strong> <span id="profile-questions"></span></p>
+        <p class="profile-item"><strong>Complex Questions Score:</strong> <span id="profile-complex-answered">0 🤔</span></p>
+        <p class="profile-item"><strong>Factoring Questions Score:</strong> <span id="profile-factoring-answered">0 ➗</span></p>
+        <p class="profile-item"><strong>Logarithm Questions Score:</strong> <span id="profile-logarithms-answered">0 📐</span></p>
+        <p class="profile-item"><strong>Total Questions Attempted:</strong> <span id="profile-questions">0 🔢</span></p>
+        <p class="profile-item"><strong>Total Score:</strong> <span id="profile-score">0 🏆</span></p>
         <button onclick="showMainMenu()">Back to Main Menu</button>
     </div>
 
