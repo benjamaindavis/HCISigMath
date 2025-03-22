@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SigMath - Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Login Screen -->
+    <div class="screen" id="login-screen">
+        <img src="images/Logo.png" alt="Logo" class="logo">
+        <input type="text" placeholder="Username" id="login-username">
+        <input type="password" placeholder="Password" id="login-password">
+        <button onclick="login()">Login</button>
+        <button onclick="showSignup()">Register</button>
+    </div>
+
+    <!-- Signup Screen -->
+    <div class="screen" id="signup-screen">
+        <h1>Create Account</h1>
+        <input type="text" placeholder="Username" id="signup-username">
+        <input type="password" placeholder="Password" id="signup-password">
+        <button onclick="signup()">Sign Up</button>
+        <button onclick="showLogin()">Back to Login</button>
+    </div>
+
+    <!-- Main Menu-->
+    <div class="screen" id="main-menu">
+        <div class="menu-container"></div>
+            <img src="images/Logo.png" alt="Logo" class="logo">
+            <button onclick="openSearchTopic()">Choose/Change topic</button>
+            <button onclick="showProfile()">View My Profile</button>
+        <button onclick="showLogin()">Logout</button>
+    </div>
+
+    <!-- Search Topic Screen -->
+    <div class="screen" id="search-topic-screen">
+        <h1>Topics</h1>
+
+        <!-- Table of Contents -->
+        <div id="table-of-contents">
+            <h2>Table of Contents</h2>
+            <ul>
+                <li><strong>Algebra II</strong>
+                    <ul>
+                        <li><button class="topic-button" onclick="selectTopic('complex')">Complex Numbers</button></li>
+                        <li><button class="topic-button" onclick="selectTopic('factoring')">Factoring</button></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Article Display -->
+        <div id="article-display" class="hidden">
+            <h2 id="article-title"></h2>
+            <p id="article-content"></p>
+            <button id="practice-button" class="practice-button" onclick="startPractice()">Practice this subject →</button>
+        </div>
+        <button onclick="showMainMenu()">Back to Main Menu</button>
+    </div>
+
+    <!-- Profile Screen -->
+    <div class="screen" id="profile-screen">
+        <h1>My Profile</h1>
+        <p><strong>Current Streak:</strong> <span id="profile-streak"></span> 🔥</p>
+        <p><strong>Longest Streak:</strong> <span id="profile-longest-streak"></span></p>
+        <p><strong>Score:</strong> <span id="profile-score"></span> 🏆</p>
+        <p><strong>Total Questions Answered:</strong> <span id="profile-questions"></span></p>
+        <button onclick="showMainMenu()">Back to Main Menu</button>
+    </div>
+
+    <!-- Math Practice Session -->
+    <div class="screen hidden" id="math-practice-screen">
+        <h2>Math Practice</h2>
+        <p id="question-counter"></p> <!-- Counter for question number -->
+        <p id="question-text"></p>
+        <div id="choices-container"></div>
+        <p id="feedback"></p>
+        <button onclick="showMainMenu()">Back to Main Menu</button>
+    </div>
+
+    <!-- Load the script at the END of the body -->
+    <script src="script.js"></script>
+</body>
+</html>

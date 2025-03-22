@@ -1,0 +1,224 @@
+{
+    "factoring": [
+        {
+            "id": 1,
+            "question": "Factor: x² - 5x + 6",
+            "choices": [
+                "(x - 2)(x - 3)",
+                "(x + 2)(x - 3)",
+                "(x - 1)(x - 6)",
+                "(x + 1)(x + 6)"
+            ],
+            "answer": "(x - 2)(x - 3)"
+        },
+        {
+            "id": 2,
+            "question": "Factor: x² - 9",
+            "choices": [
+                "(x - 3)(x + 3)",
+                "(x - 9)(x + 1)",
+                "(x - 4)(x + 5)",
+                "(x - 2)(x - 7)"
+            ],
+            "answer": "(x - 3)(x + 3)"
+        },
+        {
+            "id": 3,
+            "question": "Factor: x² + 6x + 9",
+            "choices": [
+                "(x + 3)(x + 3)",
+                "(x - 3)(x + 3)",
+                "(x + 1)(x + 9)",
+                "(x + 2)(x + 6)"
+            ],
+            "answer": "(x + 3)(x + 3)"
+        },
+        {
+            "id": 4,
+            "question": "Factor: x² - 16",
+            "choices": [
+                "(x - 4)(x + 4)",
+                "(x - 8)(x + 2)",
+                "(x - 5)(x + 3)",
+                "(x - 6)(x - 2)"
+            ],
+            "answer": "(x - 4)(x + 4)"
+        },
+        {
+            "id": 5,
+            "question": "Factor: x² + 7x + 12",
+            "choices": [
+                "(x + 3)(x + 4)",
+                "(x - 3)(x + 4)",
+                "(x - 2)(x - 6)",
+                "(x + 2)(x + 6)"
+            ],
+            "answer": "(x + 3)(x + 4)"
+        },
+        {
+            "id": 6,
+            "question": "Factor: x² - 10x + 25",
+            "choices": [
+                "(x - 5)(x - 5)",
+                "(x - 5)(x + 5)",
+                "(x - 7)(x + 3)",
+                "(x - 2)(x - 8)"
+            ],
+            "answer": "(x - 5)(x - 5)"
+        },
+        {
+            "id": 7,
+            "question": "Factor: 2x² + 7x + 3",
+            "choices": [
+                "(2x + 1)(x + 3)",
+                "(x + 1)(x + 7)",
+                "(2x - 1)(x - 3)",
+                "(2x + 3)(x + 1)"
+            ],
+            "answer": "(2x + 1)(x + 3)"
+        },
+        {
+            "id": 8,
+            "question": "Factor: 3x² - 12x",
+            "choices": [
+                "3x(x - 4)",
+                "(x - 3)(x + 4)",
+                "(3x + 4)(x - 1)",
+                "x(x - 12)"
+            ],
+            "answer": "3x(x - 4)"
+        },
+        {
+            "id": 9,
+            "question": "Factor: x² - 7x + 10",
+            "choices": [
+                "(x - 5)(x - 2)",
+                "(x - 7)(x + 10)",
+                "(x - 3)(x - 4)",
+                "(x - 6)(x + 1)"
+            ],
+            "answer": "(x - 5)(x - 2)"
+        },
+        {
+            "id": 10,
+            "question": "Factor: 4x² - 9",
+            "choices": [
+                "(2x - 3)(2x + 3)",
+                "(x - 3)(x + 3)",
+                "(4x - 1)(x + 9)",
+                "(x - 2)(x - 7)"
+            ],
+            "answer": "(2x - 3)(2x + 3)"
+        },
+        {
+            "id": 11,
+            "question": "Factor: x³ - 3x² - 4x + 12",
+            "choices": [
+                "(x - 2)(x + 3)(x - 2)",
+                "(x - 3)(x + 4)(x - 1)",
+                "(x + 2)(x - 3)(x + 1)",
+                "(x + 3)(x - 4)(x - 1)"
+            ],
+            "answer": "(x - 2)(x + 3)(x - 2)"
+        },
+        {
+            "id": 12,
+            "question": "Factor: x³ + 4x² - 5x - 20",
+            "choices": [
+                "(x + 4)(x² - 5)",
+                "(x + 5)(x² - x - 4)",
+                "(x + 4)(x² - x - 5)",
+                "(x + 5)(x² - 2x - 4)"
+            ],
+            "answer": "(x + 4)(x² - x - 5)"
+        },
+        {
+            "id": 13,
+            "question": "Factor: x³ - 7x² + 14x - 49",
+            "choices": [
+                "(x - 7)(x² + 14)",
+                "(x + 7)(x² - 14x + 7)",
+                "(x - 7)(x² - 7)",
+                "(x - 7)(x² + 7x + 7)"
+            ],
+            "answer": "(x - 7)(x² + 7)"
+        },
+        {
+            "id": 14,
+            "question": "Factor: x³ + 2x² - 9x - 18",
+            "choices": [
+                "(x + 3)(x² - x - 6)",
+                "(x + 2)(x² + 9x - 18)",
+                "(x - 3)(x² + 5x - 6)",
+                "(x - 3)(x² + 5x + 6)"
+            ],
+            "answer": "(x + 3)(x² - x - 6)"
+        },
+        {
+            "id": 15,
+            "question": "Factor: x³ - 5x² - 4x + 20",
+            "choices": [
+                "(x - 4)(x² - x - 5)",
+                "(x + 5)(x² - x + 4)",
+                "(x - 5)(x² + x - 4)",
+                "(x + 4)(x² - 4x - 5)"
+            ],
+            "answer": "(x - 4)(x² - x - 5)"
+        },
+        {
+            "id": 16,
+            "question": "Factor: x³ - x² - 6x + 6",
+            "choices": [
+                "(x - 1)(x² - 6)",
+                "(x - 1)(x² + x - 6)",
+                "(x + 1)(x² - x - 6)",
+                "(x + 1)(x² + x - 6)"
+            ],
+            "answer": "(x - 1)(x² + x - 6)"
+        },
+        {
+            "id": 17,
+            "question": "Factor: 2x³ - 4x² - 6x + 12",
+            "choices": [
+                "(2x - 2)(x² - 3)",
+                "(2x + 2)(x² - 3)",
+                "(2x + 6)(x² - 3)",
+                "(2x - 6)(x² + 3)"
+            ],
+            "answer": "(2x - 2)(x² - 3)"
+        },
+        {
+            "id": 18,
+            "question": "Factor: x³ - 8",
+            "choices": [
+                "(x - 2)(x² + 2x + 4)",
+                "(x + 2)(x² - 2x + 4)",
+                "(x + 2)(x² + 2x - 4)",
+                "(x - 2)(x² - 2x - 4)"
+            ],
+            "answer": "(x - 2)(x² + 2x + 4)"
+        },
+        {
+            "id": 19,
+            "question": "Factor: 3x³ - 12x² + 18x",
+            "choices": [
+                "3x(x² - 4x + 6)",
+                "3x(x² - 2x + 6)",
+                "3x(x² + 4x - 6)",
+                "3x(x² + 2x - 6)"
+            ],
+            "answer": "3x(x² - 4x + 6)"
+        },
+        {
+            "id": 20,
+            "question": "Factor: x³ + 6x² + 9x",
+            "choices": [
+                "x(x + 3)(x + 3)",
+                "x(x + 2)(x + 3)",
+                "x(x + 4)(x + 2)",
+                "x(x + 1)(x + 3)"
+            ],
+            "answer": "x(x + 3)(x + 3)"
+        }
+    ]
+}

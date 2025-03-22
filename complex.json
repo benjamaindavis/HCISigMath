@@ -1,0 +1,224 @@
+{
+  "complex": [
+    {
+      "id": 1,
+      "question": "Simplify: (3 + 4i) + (2 - 5i)",
+      "choices": [
+        "(5 - i)",
+        "(5 + i)",
+        "(3 - i)",
+        "(1 + 9i)"
+      ],
+      "answer": "(5 - i)"
+    },
+    {
+      "id": 2,
+      "question": "Simplify: (5 + 2i) - (1 + 7i)",
+      "choices": [
+        "(4 - 5i)",
+        "(6 + 5i)",
+        "(4 - 9i)",
+        "(5 + 9i)"
+      ],
+      "answer": "(4 - 5i)"
+    },
+    {
+      "id": 3,
+      "question": "Multiply: (2 + 3i) * (4 - 2i)",
+      "choices": [
+        "(14 - 2i)",
+        "(14 + 2i)",
+        "(10 + 12i)",
+        "(10 - 12i)"
+      ],
+      "answer": "(14 + 2i)"
+    },
+    {
+      "id": 4,
+      "question": "Find the modulus of the complex number 3 + 4i.",
+      "choices": [
+        "5",
+        "7",
+        "3",
+        "4"
+      ],
+      "answer": "5"
+    },
+    {
+      "id": 5,
+      "question": "Simplify: (1 - 2i) * (1 + 2i)",
+      "choices": [
+        "5",
+        "1 + 4i",
+        "1 - 4i",
+        "3"
+      ],
+      "answer": "5"
+    },
+    {
+      "id": 6,
+      "question": "Find the conjugate of 5 + 7i.",
+      "choices": [
+        "5 - 7i",
+        "5 + 7i",
+        "-5 + 7i",
+        "-5 - 7i"
+      ],
+      "answer": "5 - 7i"
+    },
+    {
+      "id": 7,
+      "question": "What is the real part of 2 + 5i?",
+      "choices": [
+        "2",
+        "5",
+        "7",
+        "i"
+      ],
+      "answer": "2"
+    },
+    {
+      "id": 8,
+      "question": "What is the imaginary part of 3 - 8i?",
+      "choices": [
+        "-8",
+        "8",
+        "3",
+        "-3"
+      ],
+      "answer": "-8"
+    },
+    {
+      "id": 9,
+      "question": "Solve for z: z = 3 + 4i and w = 1 - 2i. What is z + w?",
+      "choices": [
+        "(4 + 2i)",
+        "(4 + 6i)",
+        "(2 + 2i)",
+        "(2 + 6i)"
+      ],
+      "answer": "(4 + 2i)"
+    },
+    {
+      "id": 10,
+      "question": "Multiply: (3 + 2i) * (2 - 3i)",
+      "choices": [
+        "(12 - 5i)",
+        "(12 + 5i)",
+        "(2 - 7i)",
+        "(12 - 6i)"
+      ],
+      "answer": "(12 - 5i)"
+    },
+    {
+      "id": 11,
+      "question": "Simplify: (4 + 3i) * (5 - 2i)",
+      "choices": [
+        "(26 + 7i)",
+        "(22 + 11i)",
+        "(23 - 2i)",
+        "(20 + 10i)"
+      ],
+      "answer": "(26 + 7i)"
+    },
+    {
+      "id": 12,
+      "question": "Simplify: (6 - 4i) / (2 + 3i)",
+      "choices": [
+        "(2 + i)",
+        "(2 - i)",
+        "(1 + 2i)",
+        "(1 - 2i)"
+      ],
+      "answer": "(2 - i)"
+    },
+    {
+      "id": 13,
+      "question": "Find the argument (angle) of the complex number 3 + 4i.",
+      "choices": [
+        "45°",
+        "53.13°",
+        "60°",
+        "90°"
+      ],
+      "answer": "53.13°"
+    },
+    {
+      "id": 14,
+      "question": "Find the modulus of the complex number -3 + 4i.",
+      "choices": [
+        "7",
+        "5",
+        "3",
+        "6"
+      ],
+      "answer": "5"
+    },
+    {
+      "id": 15,
+      "question": "Simplify: (1 + i)^4",
+      "choices": [
+        "1 + 4i - 6 - 4i",
+        "2 - 4i",
+        "1 + 4i",
+        "-1 - 4i"
+      ],
+      "answer": "-2 + 4i"
+    },
+    {
+      "id": 16,
+      "question": "Solve for z: z = 2 + 3i and w = 1 - 4i. What is z * w?",
+      "choices": [
+        "(14 + 5i)",
+        "(10 - 5i)",
+        "(10 + 5i)",
+        "(5 - 14i)"
+      ],
+      "answer": "(14 + 5i)"
+    },
+    {
+      "id": 17,
+      "question": "Find the real part of the complex number (2 + 3i)^2.",
+      "choices": [
+        "4",
+        "1",
+        "9",
+        "7"
+      ],
+      "answer": "1"
+    },
+    {
+      "id": 18,
+      "question": "Solve for z: z = 1 + i and w = 4 - 3i. What is z * w?",
+      "choices": [
+        "(7 + i)",
+        "(5 - i)",
+        "(5 + i)",
+        "(7 - i)"
+      ],
+      "answer": "(7 + i)"
+    },
+    {
+      "id": 19,
+      "question": "What is the conjugate of the complex number 2 - 5i divided by 3 + i?",
+      "choices": [
+        "(5 + 7i)",
+        "(5 - 7i)",
+        "(4 - 3i)",
+        "(5 - 7i)"
+      ],
+      "answer": "(5 - 7i)"
+    },
+    {
+      "id": 20,
+      "question": "Simplify: (5 - 6i) + (2 + 3i) - (7 + 2i)",
+      "choices": [
+        "(0 - 5i)",
+        "(0 + 5i)",
+        "(5 - 5i)",
+        "(5 + 5i)"
+      ],
+      "answer": "(0 - 5i)"
+    }
+  ]
+}
