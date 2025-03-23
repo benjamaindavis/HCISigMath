@@ -77,11 +77,6 @@ button {
     transition: background-color 0.3s ease;
 }
 
-/* Button hover effect 
-button:hover {
-    background-color: #4945a0;
-}
-*/
 
 /* Suggestions list */
 #suggestions-list {

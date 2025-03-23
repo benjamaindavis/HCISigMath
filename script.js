@@ -315,10 +315,19 @@ function checkAnswer(selectedChoice) {
         }
     }
 
-    currentQuestionIndex++;
-    setTimeout(displayQuestion, 2000);
-}
+    // Show the "Next Question" button
+    const nextButton = document.createElement("button");
+    nextButton.textContent = "Next Question";
+    nextButton.id = "nextQuestionButton";
+    nextButton.onclick = function() {
+        currentQuestionIndex++;
+        displayQuestion();  // Move to the next question when button is clicked
+        nextButton.remove();  // Remove the button after it's clicked
+    };
 
+    // Append the button to the DOM
+    document.getElementById("feedback").appendChild(nextButton);
+}
 
 
 function updateProfile(points, topic, isCorrect) {
