@@ -277,23 +277,24 @@ function checkAnswer(selectedChoice) {
         "Correct! That was smooth! 😎"
     ];
 
-    // Increment the total questions attempted (regardless of correctness)
-    updateProfile(0, selectedTopic, false); // This will now only update profile without incrementing questions
+    updateProfile(0, selectedTopic, false); // Only updates profile without incrementing questions
 
-    // Increment the total questions answered, no matter what
     let totalQuestions = parseInt(sessionStorage.getItem("totalQuestions")) || 0;
     totalQuestions += 1;
-    sessionStorage.setItem("totalQuestions", totalQuestions); // Update the total in sessionStorage
+    sessionStorage.setItem("totalQuestions", totalQuestions);
 
     if (selectedChoice === questionData.answer) {
-        // Update profile for correct answers (increment topic-specific counter and totalScore)
-        updateProfile(1, selectedTopic, true); // This will increment topic-specific counter and totalScore
+        updateProfile(1, selectedTopic, true); // Correct answer updates
 
-        // Pick a random success message
         const randomMsg = correctMessages[Math.floor(Math.random() * correctMessages.length)];
         document.getElementById("feedback").textContent = randomMsg;
 
-        // Remove from previously attempted if it was there
+        // 🌟 Star explosion!
+        const x = window.innerWidth / 2;
+        const y = window.innerHeight / 2;
+        createStarExplosion(x, y);
+
+        // Remove from previously attempted
         if (selectedTopic === 'complex') {
             complexPreviouslyAttempted = complexPreviouslyAttempted.filter(q => q.id !== questionData.id);
         } else if (selectedTopic === 'factoring') {
@@ -314,10 +315,10 @@ function checkAnswer(selectedChoice) {
         }
     }
 
-    // Move to next question after a delay
     currentQuestionIndex++;
-    setTimeout(displayQuestion, 2000); // Move to next question after a delay
+    setTimeout(displayQuestion, 2000);
 }
+
 
 
 function updateProfile(points, topic, isCorrect) {
@@ -360,9 +361,6 @@ function updateProfile(points, topic, isCorrect) {
     document.getElementById("profile-logarithms-answered").textContent = `${logarithmsAnswered} 📐`;
 }
 
-
-
-
 function endPractice() {
     document.getElementById("question-text").textContent = `Practice session complete!`;
     document.getElementById("choices-container").innerHTML = "";
@@ -371,7 +369,62 @@ function endPractice() {
     // Update Profile Stats
     updateProfile(score, 5);
 }
+function createStarExplosion(x, y) {
+    const explosionContainer = document.createElement("div");
+    explosionContainer.classList.add("explosion-container");
+    document.body.appendChild(explosionContainer);
+  
+    // Number of stars to create for the explosion
+    const numStars = 40;
+  
+    for (let i = 0; i < numStars; i++) {
+      const star = document.createElement("div");
+      star.classList.add("star");
+      
+      // Randomize the size of the stars
+      if (Math.random() > 0.7) {
+        star.classList.add("large");
+      } else if (Math.random() < 0.3) {
+        star.classList.add("small");
+      }
+  
+      // Set star emoji
+      star.textContent = "⭐"; // Adding the star emoji
 
+      star.style.left = `${x}px`;
+      star.style.top = `${y}px`;
+  
+      // Randomize the direction and distance of the stars
+      const angle = Math.random() * 360;
+      const distance = Math.random() * 200 + 50; // Random distance between 50px to 250px
+      const xOffset = Math.cos(angle * Math.PI / 180) * distance;
+      const yOffset = Math.sin(angle * Math.PI / 180) * distance;
+  
+      // Set the CSS variables for each star's offset for the explosion
+      star.style.setProperty('--xOffset', `${xOffset}px`);
+      star.style.setProperty('--yOffset', `${yOffset}px`);
+  
+      // Append the star to the explosion container
+      explosionContainer.appendChild(star);
+  
+      // Remove star after animation
+      setTimeout(() => {
+        star.remove();
+      }, 800);
+    }
+  
+    // Remove explosion container after all stars have finished
+    setTimeout(() => {
+      explosionContainer.remove();
+    }, 1000);
+}
+
+
+  
+  
+  
+
+  
 
 
 
